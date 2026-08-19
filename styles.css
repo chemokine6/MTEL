@@ -740,3 +740,38 @@ a:hover {
     height: 170px;
   }
 }
+
+.lab-title {
+  white-space: nowrap;
+  font-size: clamp(1.35rem, 3vw, 2.4rem);
+  letter-spacing: -0.03em;
+}
+
+.publication-subtitle {
+  margin: 44px 0 16px;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.selected-publications {
+  margin-top: 10px;
+}
+
+.selected-publication-list {
+  background: rgba(47, 124, 255, 0.05);
+  border: 1px solid rgba(47, 124, 255, 0.25);
+  border-radius: 12px;
+  padding-top: 4px;
+}
+
+.all-publications {
+  margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .lab-title {
+    font-size: clamp(1.1rem, 5vw, 1.65rem);
+    letter-spacing: -0.04em;
+  }
+}
