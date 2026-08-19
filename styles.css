@@ -557,3 +557,145 @@ a:hover {
     font-size: 0.94rem;
   }
 }
+
+/* Expandable publication years */
+.publication-year {
+  margin-top: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.publication-year.active {
+  border-color: rgba(47, 124, 255, 0.35);
+}
+
+.publication-year-header {
+  padding: 17px 20px;
+}
+
+.publication-year-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.publication-year details {
+  width: 100%;
+}
+
+.publication-year summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.2s ease;
+}
+
+.publication-year summary::-webkit-details-marker {
+  display: none;
+}
+
+.publication-year summary:hover {
+  background: rgba(47, 124, 255, 0.10);
+}
+
+.publication-count {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.toggle-icon {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--accent-blue);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.publication-list {
+  margin: 0;
+  padding: 4px 24px 22px 46px;
+  color: var(--text-primary);
+}
+
+.publication-list li {
+  padding: 16px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.publication-list li::marker {
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.pub-authors,
+.pub-title,
+.pub-journal {
+  margin: 0;
+}
+
+.pub-authors {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+
+.pub-title {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.pub-title a {
+  color: var(--text-primary);
+}
+
+.pub-title a:hover {
+  color: var(--accent-blue);
+}
+
+.pub-journal {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.publication-older-note {
+  color: var(--text-secondary);
+  padding: 6px 20px 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .publication-list {
+    padding: 4px 16px 18px 34px;
+  }
+
+  .publication-year-header,
+  .publication-year summary {
+    padding: 14px 16px;
+  }
+
+  .pub-authors,
+  .pub-journal {
+    font-size: 0.84rem;
+  }
+
+  .pub-title {
+    font-size: 0.94rem;
+  }
+}
