@@ -699,3 +699,44 @@ a:hover {
     font-size: 0.94rem;
   }
 }
+
+.lab-title {
+  white-space: nowrap;
+  font-size: clamp(1.55rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+
+/* Research images */
+.research-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.research-image {
+  display: block;
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  background: #111821;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.research-card-content {
+  padding: 20px;
+}
+
+.research-card-content h3 {
+  margin-bottom: 10px;
+}
+
+.research-card-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .research-image {
+    height: 170px;
+  }
+}
