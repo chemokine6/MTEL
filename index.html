@@ -501,5 +501,19 @@
     // Update year automatically
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+<script>
+  document.querySelectorAll(".publication-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const publicationList = button.nextElementSibling;
+      const icon = button.querySelector(".toggle-icon");
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+      button.setAttribute("aria-expanded", String(!isExpanded));
+      publicationList.classList.toggle("is-hidden");
+      icon.textContent = isExpanded ? "+" : "−";
+    });
+  });
+</script>
 </body>
 </html>
