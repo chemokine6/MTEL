@@ -709,14 +709,14 @@ a:hover {
 /* Research images */
 .research-card {
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .research-image {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 260px;
+  max-height: none;
   object-fit: contain;
   object-position: center;
   background: #0b0f14;
@@ -735,12 +735,6 @@ a:hover {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.65;
-}
-
-@media (max-width: 768px) {
-  .research-image {
-    height: 170px;
-  }
 }
 
 .lab-title {
@@ -924,8 +918,3 @@ a:hover {
   font-family: Arial, sans-serif;
 }
 
-@media (max-width: 768px) {
-  .research-image {
-    max-height: 220px;
-  }
-}
