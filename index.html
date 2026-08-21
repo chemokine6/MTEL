@@ -135,6 +135,217 @@
         </div>
       </article>
     </div>
+      <!-- Interactive Research Keyword Map -->
+      <div class="keyword-section">
+        <div class="keyword-section-header">
+          <h3>Research Keywords</h3>
+          <p>Click a keyword to explore related research areas.</p>
+        </div>
+
+        <div class="keyword-map" id="keywordMap">
+          <button
+            class="keyword keyword-xl"
+            type="button"
+            data-keyword="tissue-engineering"
+            data-related="regenerative-medicine,hydrogel,biomaterials,cartilage,bone,skin,wound-healing,3d-culture"
+          >
+            Tissue Engineering
+          </button>
+
+          <button
+            class="keyword keyword-xl"
+            type="button"
+            data-keyword="nanozyme"
+            data-related="ros,oxygenation,catalysis,oxidative-stress,carbon-dots,polyphenol,therapeutics"
+          >
+            Nanozyme
+          </button>
+
+          <button
+            class="keyword keyword-xl"
+            type="button"
+            data-keyword="biomimetic-materials"
+            data-related="hydrogel,ecm,peptide,self-assembly,adhesion,biomineralization"
+          >
+            Biomimetic Materials
+          </button>
+
+          <button
+            class="keyword keyword-lg"
+            type="button"
+            data-keyword="regenerative-medicine"
+            data-related="tissue-engineering,cartilage,bone,skin,wound-healing,vascular,hydrogel"
+          >
+            Regenerative Medicine
+          </button>
+
+          <button
+            class="keyword keyword-lg"
+            type="button"
+            data-keyword="hydrogel"
+            data-related="tissue-engineering,biomimetic-materials,ecm,adhesion,cartilage,drug-delivery"
+          >
+            Hydrogel
+          </button>
+
+          <button
+            class="keyword keyword-lg"
+            type="button"
+            data-keyword="ros"
+            data-related="nanozyme,oxygenation,oxidative-stress,catalysis,therapeutics"
+          >
+            ROS Regulation
+          </button>
+
+          <button
+            class="keyword keyword-lg"
+            type="button"
+            data-keyword="oxygenation"
+            data-related="nanozyme,ros,oxidative-stress,vascular,wound-healing"
+          >
+            Oxygenation
+          </button>
+
+          <button
+            class="keyword keyword-md"
+            type="button"
+            data-keyword="peptide"
+            data-related="self-assembly,biomimetic-materials,hydrogel,ai-design,ecm"
+          >
+            Peptide Design
+          </button>
+
+          <button
+            class="keyword keyword-md"
+            type="button"
+            data-keyword="ai-design"
+            data-related="peptide,self-assembly,biomimetic-materials,protein-design"
+          >
+            AI Design
+          </button>
+
+          <button
+            class="keyword keyword-md"
+            type="button"
+            data-keyword="self-assembly"
+            data-related="peptide,hydrogel,biomimetic-materials,ecm"
+          >
+            Self-Assembly
+          </button>
+
+          <button
+            class="keyword keyword-md"
+            type="button"
+            data-keyword="drug-delivery"
+            data-related="hydrogel,nanoparticles,transdermal,therapeutics"
+          >
+            Drug Delivery
+          </button>
+
+          <button
+            class="keyword keyword-md"
+            type="button"
+            data-keyword="wound-healing"
+            data-related="skin,vascular,oxygenation,nanozyme,regenerative-medicine"
+          >
+            Wound Healing
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="cartilage"
+            data-related="tissue-engineering,hydrogel,regenerative-medicine,ecm"
+          >
+            Cartilage
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="bone"
+            data-related="tissue-engineering,biomineralization,regenerative-medicine,biomimetic-materials"
+          >
+            Bone
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="skin"
+            data-related="wound-healing,hydrogel,adhesion,nanozyme,regenerative-medicine"
+          >
+            Skin
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="vascular"
+            data-related="oxygenation,wound-healing,regenerative-medicine,nanozyme"
+          >
+            Vascularization
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="ecm"
+            data-related="biomimetic-materials,hydrogel,self-assembly,tissue-engineering"
+          >
+            ECM Mimicry
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="adhesion"
+            data-related="hydrogel,ecm,skin,biomimetic-materials"
+          >
+            Tissue Adhesion
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="biomineralization"
+            data-related="bone,biomimetic-materials,tissue-engineering"
+          >
+            Biomineralization
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="carbon-dots"
+            data-related="nanozyme,ros,polyphenol,bioimaging"
+          >
+            Carbon Dots
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="transdermal"
+            data-related="drug-delivery,hydrogel,therapeutics"
+          >
+            Transdermal Delivery
+          </button>
+
+          <button
+            class="keyword keyword-sm"
+            type="button"
+            data-keyword="therapeutics"
+            data-related="nanozyme,drug-delivery,ros,regenerative-medicine"
+          >
+            Therapeutics
+          </button>
+        </div>
+
+        <button class="keyword-reset" id="keywordReset" type="button">
+          Reset keyword map
+        </button>
+      </div>
   </div>
 </section>
 
@@ -1174,17 +1385,71 @@ Ph.D. in Seoul National University<br />
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+<script>
+  /* Footer year */
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    document.querySelectorAll(".publication-year details").forEach(function (item) {
-      item.addEventListener("toggle", function () {
-        const icon = item.querySelector(".toggle-icon");
-        if (icon) {
-          icon.textContent = item.open ? "−" : "+";
+  /* Publication year toggle icons */
+  document.querySelectorAll("details.publication-year").forEach(function (item) {
+    item.addEventListener("toggle", function () {
+      const icon = item.querySelector(".toggle-icon");
+
+      if (icon) {
+        icon.textContent = item.open ? "−" : "+";
+      }
+    });
+  });
+
+  /* Research keyword map */
+  const keywordMap = document.getElementById("keywordMap");
+  const keywordReset = document.getElementById("keywordReset");
+  const keywords = document.querySelectorAll(".keyword");
+
+  if (keywordMap && keywordReset && keywords.length > 0) {
+    keywords.forEach((keyword) => {
+      keyword.addEventListener("click", () => {
+        const selectedKeyword = keyword.dataset.keyword;
+        const relatedKeywords = keyword.dataset.related
+          .split(",")
+          .map((item) => item.trim());
+
+        const alreadyActive = keyword.classList.contains("is-active");
+
+        keywords.forEach((item) => {
+          item.classList.remove("is-active", "is-related");
+        });
+
+        if (alreadyActive) {
+          keywordMap.classList.remove("is-filtered");
+          keywordReset.classList.remove("is-visible");
+          return;
         }
+
+        keywordMap.classList.add("is-filtered");
+        keyword.classList.add("is-active");
+
+        keywords.forEach((item) => {
+          if (
+            relatedKeywords.includes(item.dataset.keyword) ||
+            item.dataset.keyword === selectedKeyword
+          ) {
+            item.classList.add("is-related");
+          }
+        });
+
+        keywordReset.classList.add("is-visible");
       });
     });
-  </script>
+
+    keywordReset.addEventListener("click", () => {
+      keywordMap.classList.remove("is-filtered");
+      keywordReset.classList.remove("is-visible");
+
+      keywords.forEach((keyword) => {
+        keyword.classList.remove("is-active", "is-related");
+      });
+    });
+  }
+</script>
 </body>
 </html>
