@@ -700,12 +700,6 @@ a:hover {
   }
 }
 
-.lab-title {
-  white-space: nowrap;
-  font-size: clamp(1.55rem, 3.2vw, 2.4rem);
-  letter-spacing: -0.02em;
-}
-
 /* Research images: preserve original aspect ratio */
 .research-card {
   padding: 0;
@@ -730,12 +724,6 @@ a:hover {
   aspect-ratio: auto;
 }
 
-.lab-title {
-  font-size: clamp(1.55rem, 4.8vw, 2.4rem);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  max-width: 100%;
-}
 
 .publication-subtitle {
   margin: 44px 0 16px;
@@ -759,10 +747,23 @@ a:hover {
   margin-top: 48px;
 }
 
+/* Hero title: responsive wrapping */
+.lab-title {
+  max-width: 100%;
+  margin-bottom: 16px;
+  font-size: clamp(1.6rem, 4.8vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
 @media (max-width: 768px) {
   .lab-title {
-    font-size: clamp(1.1rem, 5vw, 1.65rem);
-    letter-spacing: -0.04em;
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.25;
+    letter-spacing: -0.03em;
   }
 }
 
