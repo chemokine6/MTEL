@@ -715,9 +715,11 @@ a:hover {
 .research-image {
   display: block;
   width: 100%;
-  height: 185px;
-  object-fit: cover;
-  background: #111821;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  object-position: center;
+  background: #0b0f14;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -920,4 +922,10 @@ a:hover {
   background: #0a66c2;
   border-radius: 3px;
   font-family: Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .research-image {
+    max-height: 220px;
+  }
 }
