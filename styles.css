@@ -1239,7 +1239,7 @@ a:hover {
 
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  /* pointer-events: none; ← 이 줄을 삭제 */
   transform: translate(-50%, -46%) scale(0.96);
 
   transition:
@@ -1251,9 +1251,9 @@ a:hover {
 /* Desktop hover */
 .cover-publication:hover .cover-preview,
 .cover-publication:focus-within .cover-preview {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) scale(1) !important;
 }
 
 /* Mobile touch active state */
