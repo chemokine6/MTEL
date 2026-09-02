@@ -1275,3 +1275,54 @@ a:hover {
     visibility: hidden;
   }
 }
+
+/* 연도별 논문 목록에서도 cover preview 작동 */
+.publication-list li.cover-publication {
+  position: relative;
+}
+
+.publication-list li.cover-publication .cover-preview {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2000;
+
+  width: min(360px, 38vw);
+  max-height: 75vh;
+  object-fit: contain;
+
+  padding: 8px;
+  border: 1px solid rgba(47, 124, 255, 0.45);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -46%) scale(0.96);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.publication-list li.cover-publication:hover .cover-preview {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+
+@media (max-width: 768px) {
+  .publication-list li.cover-publication .cover-preview {
+    width: min(300px, 78vw);
+    max-height: 65vh;
+  }
+}
+
+/* 모바일에서는 cover preview 완전히 비활성화 */
+@media (max-width: 768px) {
+  .cover-preview {
+    display: none !important;
+  }
+}
