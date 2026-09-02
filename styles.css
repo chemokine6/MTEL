@@ -1215,14 +1215,20 @@ a:hover {
   }
 }
 
+/* Hover cover preview for selected publications */
+
+.cover-publication {
+  position: relative;
+}
+
 .cover-preview {
-  position: absolute;
+  position: fixed;
   top: 50%;
-  left: calc(100% + 20px);
+  left: 50%;
   z-index: 2000;
 
-  width: 280px;
-  max-height: 420px;
+  width: min(360px, 38vw);
+  max-height: 75vh;
   object-fit: contain;
 
   padding: 8px;
@@ -1234,16 +1240,38 @@ a:hover {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-50%) translateX(8px);
+  transform: translate(-50%, -46%) scale(0.96);
+
   transition:
     opacity 0.2s ease,
     visibility 0.2s ease,
     transform 0.2s ease;
 }
 
+/* Desktop hover */
 .cover-publication:hover .cover-preview,
 .cover-publication:focus-within .cover-preview {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-50%) translateX(0);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Mobile touch active state */
+.cover-publication.is-active .cover-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media (max-width: 768px) {
+  .cover-preview {
+    width: min(300px, 78vw);
+    max-height: 65vh;
+  }
+
+  /* 모바일에서는 hover 대신 터치로만 작동 */
+  .cover-publication:hover .cover-preview {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
