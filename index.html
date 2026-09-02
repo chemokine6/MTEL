@@ -1382,6 +1382,89 @@ Ph.D. in Seoul National University<br />
 </details>
   </section>
 
+<!-- News -->
+<section id="news" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">News</h2>
+    <p class="section-intro">Latest updates from the Multiscale Tissue Engineering Laboratory.</p>
+
+    <!-- Recent News Carousel -->
+    <div class="news-carousel">
+      <div class="news-carousel-track" id="newsCarouselTrack">
+        <!-- Recent 3 news items will be inserted here by JavaScript -->
+      </div>
+      <div class="news-carousel-controls">
+        <button class="news-carousel-btn news-carousel-prev" id="newsCarouselPrev">
+          <span>&#8249;</span>
+        </button>
+        <button class="news-carousel-btn news-carousel-next" id="newsCarouselNext">
+          <span>&#8250;</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- All News by Year -->
+    <details class="all-news" id="allNews">
+      <summary class="all-news-toggle">
+        <span>All News by Year</span>
+        <span class="all-news-icon">+</span>
+      </summary>
+      <div class="all-news-content">
+        <!-- 2026 -->
+        <details class="news-year">
+          <summary>
+            <span>2026</span>
+            <span class="news-count">3</span>
+            <span class="toggle-icon">+</span>
+          </summary>
+          <ul class="news-list">
+            <li class="news-item">
+              <div class="news-date">2026-08-25</div>
+              <div class="news-text">
+                Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.
+              </div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2026-06-15</div>
+              <div class="news-text">
+                Our paper "Engineering Multi-Functional Enzyme-Mimetic Polyphenol-Catalase Complex" was published in ACS Nano as a Front Cover.
+              </div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2026-03-02</div>
+              <div class="news-text">
+                Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).
+              </div>
+            </li>
+          </ul>
+        </details>
+
+        <!-- 2025 -->
+        <details class="news-year">
+          <summary>
+            <span>2025</span>
+            <span class="news-count">2</span>
+            <span class="toggle-icon">+</span>
+          </summary>
+          <ul class="news-list">
+            <li class="news-item">
+              <div class="news-date">2025-12-20</div>
+              <div class="news-text">
+                Jeongmin Han and Jinwoo Hong successfully defended their Master's theses.
+              </div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2025-09-01</div>
+              <div class="news-text">
+                Our lab moved to the new building at Chung-Ang University.
+              </div>
+            </li>
+          </ul>
+        </details>
+      </div>
+    </details>
+  </div>
+</section>
 
   <!-- Contact -->
   <section id="contact" class="section">
@@ -1570,6 +1653,104 @@ Ph.D. in Seoul National University<br />
       });
     }
   });
+// News Carousel
+const newsCarouselTrack = document.getElementById('newsCarouselTrack');
+const newsCarouselPrev = document.getElementById('newsCarouselPrev');
+const newsCarouselNext = document.getElementById('newsCarouselNext');
+
+// Sample news data (replace with your actual news)
+const newsData = [
+  {
+    date: '2026-08-25',
+    text: 'Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.',
+    hasCover: false
+  },
+  {
+    date: '2026-06-15',
+    text: 'Our paper "Engineering Multi-Functional Enzyme-Mimetic Polyphenol-Catalase Complex" was published in ACS Nano as a Front Cover.',
+    hasCover: true,
+    coverImage: 'images/acs-nano-cover.jpeg',
+    coverAlt: 'ACS Nano front cover'
+  },
+  {
+    date: '2026-03-02',
+    text: 'Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).',
+    hasCover: false
+  }
+];
+
+// Render carousel items
+function renderCarousel() {
+  newsCarouselTrack.innerHTML = newsData.map((news, index) => `
+    <div class="news-carousel-item ${news.hasCover ? 'news-carousel-cover' : ''}">
+      <div class="news-carousel-date">${news.date}</div>
+      <div class="news-carousel-text">${news.text}</div>
+      ${news.hasCover ? `
+        <img
+          class="cover-preview"
+          src="${news.coverImage}"
+          alt="${news.coverAlt}"
+        >
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+renderCarousel();
+
+// Carousel auto-rotation
+let currentSlide = 0;
+let autoRotateInterval;
+const slideInterval = 5000; // 5 seconds
+
+function goToSlide(index) {
+  currentSlide = index;
+  newsCarouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % newsData.length;
+  goToSlide(currentSlide);
+}
+
+function startAutoRotate() {
+  autoRotateInterval = setInterval(nextSlide, slideInterval);
+}
+
+function stopAutoRotate() {
+  clearInterval(autoRotateInterval);
+}
+
+// Start auto-rotation
+startAutoRotate();
+
+// Pause on hover
+newsCarouselTrack.addEventListener('mouseenter', stopAutoRotate);
+newsCarouselTrack.addEventListener('mouseleave', startAutoRotate);
+
+// Manual navigation
+newsCarouselPrev.addEventListener('click', () => {
+  stopAutoRotate();
+  currentSlide = (currentSlide - 1 + newsData.length) % newsData.length;
+  goToSlide(currentSlide);
+  startAutoRotate();
+});
+
+newsCarouselNext.addEventListener('click', () => {
+  stopAutoRotate();
+  nextSlide();
+  startAutoRotate();
+});
+
+// Publication year toggle icons
+document.querySelectorAll('details.news-year').forEach(function(item) {
+  item.addEventListener('toggle', function() {
+    const icon = item.querySelector('.toggle-icon');
+    if (icon) {
+      icon.textContent = item.open ? '−' : '+';
+    }
+  });
+});
 </script>
 </body>
 </html>
