@@ -1458,10 +1458,6 @@ a:hover {
   background: rgba(47, 124, 255, 0.10);
 }
 
-.news-count {
-  color: var(--accent-blue);
-  font-weight: 600;
-}
 
 .news-list {
   margin: 0;
@@ -1522,5 +1518,48 @@ a:hover {
 
   .news-year summary {
     padding: 14px 16px;
+  }
+}
+/* News cover preview */
+.news-list li.news-cover {
+  position: relative;
+  cursor: pointer;
+}
+
+.news-list li.news-cover .cover-preview {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2000;
+
+  width: min(360px, 38vw);
+  max-height: 75vh;
+  object-fit: contain;
+
+  padding: 8px;
+  border: 1px solid rgba(47, 124, 255, 0.45);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -46%) scale(0.96);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.news-list li.news-cover:hover .cover-preview {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, -50%) scale(1) !important;
+}
+
+@media (max-width: 768px) {
+  .news-list li.news-cover .cover-preview {
+    display: none !important;
   }
 }

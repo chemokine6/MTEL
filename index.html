@@ -1601,29 +1601,118 @@ const allNewsContent = document.querySelector('.all-news-content');
 // All news data (ordered by date, newest first) - EDIT THIS!
 const allNewsData = [
   {
-    date: '2026-08-25',
-    text: 'Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.',
+    date: '2026-09-01',
+    text: 'Welcome new graduate students: Minjeong Kim (PhD), Minjin Kim (PhD), and Ibrahim Sofiyullah (MS-PhD).',
     year: '2026'
+    hasCover: false            // ← 이미지가 없으면 false
   },
   {
-    date: '2026-03-02',
-    text: 'Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).',
+    date: '2026-08-21',
+    text: 'Congratulations for graduation : Minjeong Kim (PhD), and Minjin Kim (PhD).',
     year: '2026'
+hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/2026-gradu.jpg',  // ← 이미지 경로
+    coverAlt: '2026 Graduation'           // ← 이미지 설명
   },
   {
-    date: '2025-12-20',
-    text: 'Jeongmin Han and Jinwoo Hong successfully defended their Master\'s theses.',
+    date: '2026-03-01',
+    text: 'Welcome new graduate students: Geonho Bing (MS).',
+    year: '2026'
+    hasCover: false            // ← 이미지가 없으면 false
+  },
+  {
+    date: '2025-11-10',
+    text: 'Prof. Kim has been awarded the Young Scientist Award from Japan Society of Biomaterials. Congratulations!',
     year: '2025'
+    hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/YSA.png',  // ← 이미지 경로
+    coverAlt: 'YSA award'           // ← 이미지 설명
   },
   {
-    date: '2025-09-01',
-    text: 'Our lab moved to the new building at Chung-Ang University.',
+    date: '2025-09-11',
+    text: 'MTEL in KSBM 2025 held in BEXCO, Busan. Prof. Kim has been awarded the NIBEC Young Researcher Award. Congratulations!',
     year: '2025'
+    hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/nibec.png',  // ← 이미지 경로
+    coverAlt: 'NIBEC award'           // ← 이미지 설명
   },
   {
-    date: '2024-09-01',
-    text: 'Welcome new graduate students: Jeongmin Han and Jinwoo Hong.',
+    date: '2025-03-01',
+    text: 'Multiscale Tissue Engineering Lab is now re-opening at Chung-Ang University.',
+    year: '2025'
+    hasCover: false            // ← 이미지가 없으면 false  
+},
+  {
+    date: '2024-09-26',
+    text: 'MTEL in KSBB 2024 held in ICC, Jeju. Prof. Kim has been awarded the Young Researcher Award. Congratulations!',
     year: '2024'
+    hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/ksbb-2024-icc.jpg',  // ← 이미지 경로
+    coverAlt: 'KSBB 2024'           // ← 이미지 설명
+  },
+  {
+    date: '2024-03-01',
+    text: 'Welcome new graduate students: Minjeong Kim (MS), Minjin Kim (MS)',
+    year: '2024'
+    hasCover: false            // ← 이미지가 없으면 false
+  },
+  {
+    date: '2024-02-22',
+    text: 'Congratulations for graduation : Jinwoo Hong (MS), and Jeongmin Han (MS).',
+    year: '2024'
+    hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/2024-gradu.jpg',  // ← 이미지 경로
+    coverAlt: 'Graduation 2024'           // ← 이미지 설명
+  },
+  {
+    date: '2023-10-06',
+    text: 'MTEL in TERMIS-AP 2023 held in Hong Kong & Vistied The Prince Philip Dental Hospital at The University of Hong Kong',
+    year: '2023'
+    hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/2024-hong.jpg',  // ← 이미지 경로
+    coverAlt: 'HongKong'           // ← 이미지 설명
+  },
+  {
+    date: '2023-10-05',
+    text: 'MTEL in KSBB 2023 held in BEXCO',
+    year: '2023'
+hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/2023-ksbb.png',  // ← 이미지 경로
+    coverAlt: '2023 KSBB'           // ← 이미지 설명
+  },
+  {
+    date: '2022-12-01',
+    text: 'MRS Fall Meeting 2022 held in Hynes Convention Center, Boston, and Reunion with DBGs at Harvard University and DBG Alum',
+    year: '2022'
+hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/harvard.jpg',  // ← 이미지 경로
+    coverAlt: 'Harvard'           // ← 이미지 설명
+  },
+  {
+    date: '2022-10-05',
+    text: 'MTEL in TERMIS-AP 2022 held in ICC Jeju.',
+    year: '2022'
+hasCover: true,              // ← 이걸 true 로
+    coverImage: 'images/termis-ap.jpeg',  // ← 이미지 경로
+    coverAlt: 'Termis-AP'           // ← 이미지 설명
+  },
+  {
+    date: '2022-03-01',
+    text: 'Welcome new graduate students: Jinwoo Hong (MS), and Jeongmin Han (MS)',
+    year: '2022'
+    hasCover: false            // ← 이미지가 없으면 false
+  },
+  {
+    date: '2021-09-01',
+    text: 'Welcome new graduate students: Sumi Choi (MS).',
+    year: '2021'
+    hasCover: false            // ← 이미지가 없으면 false
+  },
+  {
+    date: '2021-03-01',
+    text: 'Multiscale Tissue Engineering Lab is now opening at Dong-A University. ',
+    year: '2021'
+    hasCover: false            // ← 이미지가 없으면 false
   }
 ];
 
@@ -1682,7 +1771,6 @@ function renderAllNews() {
       <details class="news-year">
         <summary>
           <span>${year}</span>
-          <span class="news-count">${yearNews.length}</span>
           <span class="toggle-icon">+</span>
         </summary>
         <ul class="news-list">
