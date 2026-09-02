@@ -1595,165 +1595,150 @@ Ph.D. in Seoul National University<br />
 // ====================
 // News System
 // ====================
-const recentNewsList = document.getElementById('recentNewsList');
-const allNewsContent = document.querySelector('.all-news-content');
 
-// All news data (ordered by date, newest first) - EDIT THIS!
+const recentNewsList = document.getElementById("recentNewsList");
+const allNewsContent = document.querySelector(".all-news-content");
+
 const allNewsData = [
   {
-    date: '2026-09-01',
-    text: 'Welcome new graduate students: Minjeong Kim (PhD), Minjin Kim (PhD), and Ibrahim Sofiyullah (MS-PhD).',
-    year: '2026'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2026-09-01",
+    text: "Welcome new graduate students: Minjeong Kim (PhD), Minjin Kim (PhD), and Ibrahim Sofiyullah (MS-PhD).",
+    year: "2026",
+    hasCover: false
   },
   {
-    date: '2026-08-21',
-    text: 'Congratulations for graduation : Minjeong Kim (PhD), and Minjin Kim (PhD).',
-    year: '2026'
-hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/2026-gradu.jpg',  // ← 이미지 경로
-    coverAlt: '2026 Graduation'           // ← 이미지 설명
+    date: "2026-08-21",
+    text: "Congratulations to Minjeong Kim and Minjin Kim on their graduation.",
+    year: "2026",
+    hasCover: true,
+    coverImage: "images/2026-gradu.jpg",
+    coverAlt: "2026 graduation"
   },
   {
-    date: '2026-03-01',
-    text: 'Welcome new graduate students: Geonho Bing (MS).',
-    year: '2026'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2026-03-01",
+    text: "Welcome new graduate student: Geonho Bing (MS).",
+    year: "2026",
+    hasCover: false
   },
   {
-    date: '2025-11-10',
-    text: 'Prof. Kim has been awarded the Young Scientist Award from Japan Society of Biomaterials. Congratulations!',
-    year: '2025'
-    hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/YSA.png',  // ← 이미지 경로
-    coverAlt: 'YSA award'           // ← 이미지 설명
+    date: "2025-11-10",
+    text: "Prof. Kim received the Young Scientist Award from the Japan Society of Biomaterials. Congratulations!",
+    year: "2025",
+    hasCover: true,
+    coverImage: "images/YSA.png",
+    coverAlt: "Young Scientist Award"
   },
   {
-    date: '2025-09-11',
-    text: 'MTEL in KSBM 2025 held in BEXCO, Busan. Prof. Kim has been awarded the NIBEC Young Researcher Award. Congratulations!',
-    year: '2025'
-    hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/nibec.png',  // ← 이미지 경로
-    coverAlt: 'NIBEC award'           // ← 이미지 설명
+    date: "2025-09-11",
+    text: "MTEL participated in KSBM 2025 at BEXCO, Busan. Prof. Kim received the NIBEC Young Researcher Award. Congratulations!",
+    year: "2025",
+    hasCover: true,
+    coverImage: "images/nibec.png",
+    coverAlt: "NIBEC Young Researcher Award"
   },
   {
-    date: '2025-03-01',
-    text: 'Multiscale Tissue Engineering Lab is now re-opening at Chung-Ang University.',
-    year: '2025'
-    hasCover: false            // ← 이미지가 없으면 false  
-},
-  {
-    date: '2024-09-26',
-    text: 'MTEL in KSBB 2024 held in ICC, Jeju. Prof. Kim has been awarded the Young Researcher Award. Congratulations!',
-    year: '2024'
-    hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/ksbb-2024-icc.jpg',  // ← 이미지 경로
-    coverAlt: 'KSBB 2024'           // ← 이미지 설명
+    date: "2025-03-01",
+    text: "The Multiscale Tissue Engineering Laboratory has reopened at Chung-Ang University.",
+    year: "2025",
+    hasCover: false
   },
   {
-    date: '2024-03-01',
-    text: 'Welcome new graduate students: Minjeong Kim (MS), Minjin Kim (MS)',
-    year: '2024'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2024-09-26",
+    text: "MTEL participated in KSBB 2024 at ICC Jeju. Prof. Kim received the Young Researcher Award. Congratulations!",
+    year: "2024",
+    hasCover: true,
+    coverImage: "images/ksbb-2024-icc.jpg",
+    coverAlt: "KSBB 2024"
   },
   {
-    date: '2024-02-22',
-    text: 'Congratulations for graduation : Jinwoo Hong (MS), and Jeongmin Han (MS).',
-    year: '2024'
-    hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/2024-gradu.jpg',  // ← 이미지 경로
-    coverAlt: 'Graduation 2024'           // ← 이미지 설명
+    date: "2024-03-01",
+    text: "Welcome new graduate students: Minjeong Kim (MS) and Minjin Kim (MS).",
+    year: "2024",
+    hasCover: false
   },
   {
-    date: '2023-10-06',
-    text: 'MTEL in TERMIS-AP 2023 held in Hong Kong & Vistied The Prince Philip Dental Hospital at The University of Hong Kong',
-    year: '2023'
-    hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/2024-hong.jpg',  // ← 이미지 경로
-    coverAlt: 'HongKong'           // ← 이미지 설명
+    date: "2024-02-22",
+    text: "Congratulations to Jinwoo Hong and Jeongmin Han on their graduation.",
+    year: "2024",
+    hasCover: true,
+    coverImage: "images/2024-gradu.jpg",
+    coverAlt: "2024 graduation"
   },
   {
-    date: '2023-10-05',
-    text: 'MTEL in KSBB 2023 held in BEXCO',
-    year: '2023'
-hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/2023-ksbb.png',  // ← 이미지 경로
-    coverAlt: '2023 KSBB'           // ← 이미지 설명
+    date: "2023-10-06",
+    text: "MTEL participated in TERMIS-AP 2023 in Hong Kong and visited The Prince Philip Dental Hospital at The University of Hong Kong.",
+    year: "2023",
+    hasCover: true,
+    coverImage: "images/2024-hong.jpg",
+    coverAlt: "TERMIS-AP 2023 in Hong Kong"
   },
   {
-    date: '2022-12-01',
-    text: 'MRS Fall Meeting 2022 held in Hynes Convention Center, Boston, and Reunion with DBGs at Harvard University and DBG Alum',
-    year: '2022'
-hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/harvard.jpg',  // ← 이미지 경로
-    coverAlt: 'Harvard'           // ← 이미지 설명
+    date: "2023-10-05",
+    text: "MTEL participated in KSBB 2023 at BEXCO.",
+    year: "2023",
+    hasCover: true,
+    coverImage: "images/2023-ksbb.png",
+    coverAlt: "KSBB 2023"
   },
   {
-    date: '2022-10-05',
-    text: 'MTEL in TERMIS-AP 2022 held in ICC Jeju.',
-    year: '2022'
-hasCover: true,              // ← 이걸 true 로
-    coverImage: 'images/termis-ap.jpeg',  // ← 이미지 경로
-    coverAlt: 'Termis-AP'           // ← 이미지 설명
+    date: "2022-12-01",
+    text: "MTEL attended the MRS Fall Meeting 2022 at Hynes Convention Center in Boston and reunited with DBGs at Harvard University.",
+    year: "2022",
+    hasCover: true,
+    coverImage: "images/harvard.jpg",
+    coverAlt: "MRS Fall Meeting 2022 and Harvard reunion"
   },
   {
-    date: '2022-03-01',
-    text: 'Welcome new graduate students: Jinwoo Hong (MS), and Jeongmin Han (MS)',
-    year: '2022'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2022-10-05",
+    text: "MTEL participated in TERMIS-AP 2022 at ICC Jeju.",
+    year: "2022",
+    hasCover: true,
+    coverImage: "images/termis-ap.jpeg",
+    coverAlt: "TERMIS-AP 2022"
   },
   {
-    date: '2021-09-01',
-    text: 'Welcome new graduate students: Sumi Choi (MS).',
-    year: '2021'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2022-03-01",
+    text: "Welcome new graduate students: Jinwoo Hong (MS) and Jeongmin Han (MS).",
+    year: "2022",
+    hasCover: false
   },
   {
-    date: '2021-03-01',
-    text: 'Multiscale Tissue Engineering Lab is now opening at Dong-A University. ',
-    year: '2021'
-    hasCover: false            // ← 이미지가 없으면 false
+    date: "2021-09-01",
+    text: "Welcome new graduate student: Sumi Choi (MS).",
+    year: "2021",
+    hasCover: false
+  },
+  {
+    date: "2021-03-01",
+    text: "The Multiscale Tissue Engineering Laboratory opened at Dong-A University.",
+    year: "2021",
+    hasCover: false
   }
 ];
 
-// Render recent news (latest 3 items)
 let recentPage = 0;
 const itemsPerPage = 3;
-let autoScrollInterval;
-const scrollInterval = 4000; // 4 seconds
+const scrollInterval = 4000;
+let autoScrollTimer = null;
 
 function renderRecentNews() {
   const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
   const start = recentPage * itemsPerPage;
-  const end = Math.min(start + itemsPerPage, allNewsData.length);
-  const visibleNews = allNewsData.slice(start, end);
+  const visibleNews = allNewsData.slice(start, start + itemsPerPage);
 
   recentNewsList.innerHTML = visibleNews.map(news => `
     <div class="recent-news-item">
       <div class="recent-news-date">${news.date}</div>
       <div class="recent-news-text">${news.text}</div>
     </div>
-  `).join('');
+  `).join("");
+
+  return totalPages;
 }
 
-function scrollNext() {
-  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
-  recentPage = (recentPage + 1) % totalPages;
-  renderRecentNews();
-}
-
-function startAutoScroll() {
-  autoScrollInterval = setInterval(scrollNext, scrollInterval);
-}
-
-function stopAutoScroll() {
-  clearInterval(autoScrollInterval);
-}
-
-// Render all news by year
 function renderAllNews() {
-  // Group news by year
   const newsByYear = {};
+
   allNewsData.forEach(news => {
     if (!newsByYear[news.year]) {
       newsByYear[news.year] = [];
@@ -1761,51 +1746,84 @@ function renderAllNews() {
     newsByYear[news.year].push(news);
   });
 
-  // Get sorted years (newest first)
   const years = Object.keys(newsByYear).sort((a, b) => b - a);
 
-  // Generate HTML
   allNewsContent.innerHTML = years.map(year => {
     const yearNews = newsByYear[year];
+
     return `
       <details class="news-year">
         <summary>
           <span>${year}</span>
           <span class="toggle-icon">+</span>
         </summary>
+
         <ul class="news-list">
           ${yearNews.map(news => `
-            <li class="news-item">
+            <li class="news-item ${news.hasCover ? "news-cover" : ""}">
               <div class="news-date">${news.date}</div>
               <div class="news-text">${news.text}</div>
+
+              ${
+                news.hasCover
+                  ? `
+                    <img
+                      class="cover-preview"
+                      src="${news.coverImage}"
+                      alt="${news.coverAlt}"
+                    >
+                  `
+                  : ""
+              }
             </li>
-          `).join('')}
+          `).join("")}
         </ul>
       </details>
     `;
-  }).join('');
+  }).join("");
+
+  document.querySelectorAll("details.news-year").forEach(yearDetails => {
+    yearDetails.addEventListener("toggle", () => {
+      const icon = yearDetails.querySelector(".toggle-icon");
+      if (icon) {
+        icon.textContent = yearDetails.open ? "−" : "+";
+      }
+    });
+  });
 }
 
-// Initial render
-renderRecentNews();
-renderAllNews();
+function nextNewsPage() {
+  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
 
-// Start auto-scroll
-startAutoScroll();
+  if (totalPages <= 1) {
+    return;
+  }
 
-// Pause on hover
-recentNewsList.addEventListener('mouseenter', stopAutoScroll);
-recentNewsList.addEventListener('mouseleave', startAutoScroll);
+  recentPage = (recentPage + 1) % totalPages;
+  renderRecentNews();
+}
 
-// News year toggle icons
-document.querySelectorAll('details.news-year').forEach(function(item) {
-  item.addEventListener('toggle', function() {
-    const icon = item.querySelector('.toggle-icon');
-    if (icon) {
-      icon.textContent = item.open ? '−' : '+';
-    }
-  });
-});
+function startNewsRotation() {
+  stopNewsRotation();
+  autoScrollTimer = setInterval(nextNewsPage, scrollInterval);
+}
+
+function stopNewsRotation() {
+  if (autoScrollTimer !== null) {
+    clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+}
+
+if (recentNewsList && allNewsContent) {
+  renderRecentNews();
+  renderAllNews();
+
+  recentNewsList.addEventListener("mouseenter", stopNewsRotation);
+  recentNewsList.addEventListener("mouseleave", startNewsRotation);
+
+  startNewsRotation();
+}
 </script>
 </body>
 </html>
