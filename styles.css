@@ -1344,7 +1344,7 @@ a:hover {
   grid-template-columns: 130px 1fr;
   gap: 16px;
   align-items: baseline;
-  transition: background 0.2s ease;
+   transition: background 0.2s ease, opacity 0.35s ease, transform 0.35s ease;
 }
 
 .recent-news-item:last-child {

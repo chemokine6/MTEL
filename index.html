@@ -1693,7 +1693,7 @@ const allNewsData = [
     text: "MTEL participated in TERMIS-AP 2022 at ICC Jeju.",
     year: "2022",
     hasCover: true,
-    coverImage: "images/termis-ap.jpeg",
+    coverImage: "images/termis-ap.jpg",
     coverAlt: "TERMIS-AP 2022"
   },
   {
@@ -1717,25 +1717,34 @@ const allNewsData = [
 ];
 
 let recentPage = 0;
+let currentNewsIndex = 0;
+let isTransitioning = false;
 const itemsPerPage = 3;
-const scrollInterval = 4000;
+const scrollInterval = 2000; // 6 초로 늦춤
 let autoScrollTimer = null;
 
 function renderRecentNews() {
-  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
-  const start = recentPage * itemsPerPage;
-  const visibleNews = allNewsData.slice(start, start + itemsPerPage);
+  const visibleNews = allNewsData.slice(currentNewsIndex, currentNewsIndex + itemsPerPage);
 
   recentNewsList.innerHTML = visibleNews.map(news => `
-    <div class="recent-news-item">
+    <div class="recent-news-item" style="opacity: 0; transform: translateY(-10px);">
       <div class="recent-news-date">${news.date}</div>
       <div class="recent-news-text">${news.text}</div>
     </div>
   `).join("");
 
-  return totalPages;
+  // Fade in animation
+  setTimeout(() => {
+    const items = recentNewsList.querySelectorAll('.recent-news-item');
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+  }, 50);
 }
-
 function renderAllNews() {
   const newsByYear = {};
 
@@ -1793,16 +1802,29 @@ function renderAllNews() {
 }
 
 function nextNewsPage() {
-  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
-
-  if (totalPages <= 1) {
+  if (isTransitioning || allNewsData.length <= itemsPerPage) {
     return;
   }
 
-  recentPage = (recentPage + 1) % totalPages;
-  renderRecentNews();
-}
+  isTransitioning = true;
 
+  // Fade out
+  const items = recentNewsList.querySelectorAll('.recent-news-item');
+  items.forEach((item, index) => {
+    setTimeout(() => {
+      item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(-10px)';
+    }, index * 80);
+  });
+
+  // After fade out, update content
+  setTimeout(() => {
+    currentNewsIndex = (currentNewsIndex + 1) % (allNewsData.length - itemsPerPage + 1);
+    renderRecentNews();
+    isTransitioning = false;
+  }, 400);
+}
 function startNewsRotation() {
   stopNewsRotation();
   autoScrollTimer = setInterval(nextNewsPage, scrollInterval);
