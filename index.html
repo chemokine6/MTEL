@@ -1388,13 +1388,9 @@ Ph.D. in Seoul National University<br />
     <h2 class="section-title">News</h2>
     <p class="section-intro">Latest updates from the Multiscale Tissue Engineering Laboratory.</p>
 
-    <!-- Recent News Carousel (Vertical) -->
-    <div class="news-carousel-vertical">
-      <div class="news-carousel-viewport">
-        <div class="news-carousel-track-vertical" id="newsCarouselTrack">
-          <!-- News items will be inserted here by JavaScript -->
-        </div>
-      </div>
+    <!-- Recent News List -->
+    <div class="recent-news-list" id="recentNewsList">
+      <!-- Recent 3 news items will be inserted here by JavaScript -->
     </div>
 
     <!-- All News by Year -->
@@ -1404,73 +1400,11 @@ Ph.D. in Seoul National University<br />
         <span class="all-news-icon">+</span>
       </summary>
       <div class="all-news-content">
-        <!-- 2026 -->
-        <details class="news-year">
-          <summary>
-            <span>2026</span>
-            <span class="news-count">2</span>
-            <span class="toggle-icon">+</span>
-          </summary>
-          <ul class="news-list">
-            <li class="news-item">
-              <div class="news-date">2026-08-25</div>
-              <div class="news-text">
-                Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.
-              </div>
-            </li>
-            <li class="news-item">
-              <div class="news-date">2026-03-02</div>
-              <div class="news-text">
-                Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).
-              </div>
-            </li>
-          </ul>
-        </details>
-
-        <!-- 2025 -->
-        <details class="news-year">
-          <summary>
-            <span>2025</span>
-            <span class="news-count">2</span>
-            <span class="toggle-icon">+</span>
-          </summary>
-          <ul class="news-list">
-            <li class="news-item">
-              <div class="news-date">2025-12-20</div>
-              <div class="news-text">
-                Jeongmin Han and Jinwoo Hong successfully defended their Master's theses.
-              </div>
-            </li>
-            <li class="news-item">
-              <div class="news-date">2025-09-01</div>
-              <div class="news-text">
-                Our lab moved to the new building at Chung-Ang University.
-              </div>
-            </li>
-          </ul>
-        </details>
-
-        <!-- 2024 -->
-        <details class="news-year">
-          <summary>
-            <span>2024</span>
-            <span class="news-count">1</span>
-            <span class="toggle-icon">+</span>
-          </summary>
-          <ul class="news-list">
-            <li class="news-item">
-              <div class="news-date">2024-09-01</div>
-              <div class="news-text">
-                Welcome new graduate students: Jeongmin Han and Jinwoo Hong.
-              </div>
-            </li>
-          </ul>
-        </details>
+        <!-- News years will be inserted here by JavaScript -->
       </div>
     </details>
   </div>
 </section>
-
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
@@ -1658,63 +1592,65 @@ Ph.D. in Seoul National University<br />
       });
     }
   });
-// News Carousel (Vertical)
-const newsCarouselTrack = document.getElementById('newsCarouselTrack');
+// ====================
+// News System
+// ====================
+const recentNewsList = document.getElementById('recentNewsList');
+const allNewsContent = document.querySelector('.all-news-content');
 
-// Sample news data (replace with your actual news)
-const newsData = [
+// All news data (ordered by date, newest first) - EDIT THIS!
+const allNewsData = [
   {
     date: '2026-08-25',
-    text: 'Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.'
+    text: 'Su-Hwan Kim received the 2026 Young Investigator Award from the Korean Society for Biomaterials.',
+    year: '2026'
   },
   {
     date: '2026-03-02',
-    text: 'Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).'
+    text: 'Welcome new graduate students: Sumi Choi (MS-PhD), Minjeong Kim (PhD), Minjin Kim (PhD), Geonho Bing (MS), and Ibrahim Sofiyullah (MS-PhD).',
+    year: '2026'
   },
   {
     date: '2025-12-20',
-    text: 'Jeongmin Han and Jinwoo Hong successfully defended their Master\'s theses.'
+    text: 'Jeongmin Han and Jinwoo Hong successfully defended their Master\'s theses.',
+    year: '2025'
   },
   {
     date: '2025-09-01',
-    text: 'Our lab moved to the new building at Chung-Ang University.'
+    text: 'Our lab moved to the new building at Chung-Ang University.',
+    year: '2025'
   },
   {
     date: '2024-09-01',
-    text: 'Welcome new graduate students: Jeongmin Han and Jinwoo Hong.'
+    text: 'Welcome new graduate students: Jeongmin Han and Jinwoo Hong.',
+    year: '2024'
   }
 ];
 
-// Render carousel items
-function renderCarousel() {
-  newsCarouselTrack.innerHTML = newsData.map(news => `
-    <div class="news-carousel-item-vertical">
-      <div class="news-carousel-date-vertical">${news.date}</div>
-      <div class="news-carousel-text-vertical">${news.text}</div>
+// Render recent news (latest 3 items)
+let recentPage = 0;
+const itemsPerPage = 3;
+let autoScrollInterval;
+const scrollInterval = 4000; // 4 seconds
+
+function renderRecentNews() {
+  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
+  const start = recentPage * itemsPerPage;
+  const end = Math.min(start + itemsPerPage, allNewsData.length);
+  const visibleNews = allNewsData.slice(start, end);
+
+  recentNewsList.innerHTML = visibleNews.map(news => `
+    <div class="recent-news-item">
+      <div class="recent-news-date">${news.date}</div>
+      <div class="recent-news-text">${news.text}</div>
     </div>
   `).join('');
 }
 
-renderCarousel();
-
-// Carousel auto-scroll
-let currentScroll = 0;
-let autoScrollInterval;
-const scrollInterval = 4000; // 4 seconds
-const itemHeight = 80; // Height of each news item
-const visibleItems = 3; // Number of visible items
-
 function scrollNext() {
-  const totalItems = newsData.length;
-  const maxScroll = (totalItems - visibleItems) * itemHeight;
-  
-  currentScroll += itemHeight;
-  
-  if (currentScroll > maxScroll) {
-    currentScroll = 0;
-  }
-  
-  newsCarouselTrack.style.transform = `translateY(-${currentScroll}px)`;
+  const totalPages = Math.ceil(allNewsData.length / itemsPerPage);
+  recentPage = (recentPage + 1) % totalPages;
+  renderRecentNews();
 }
 
 function startAutoScroll() {
@@ -1725,12 +1661,53 @@ function stopAutoScroll() {
   clearInterval(autoScrollInterval);
 }
 
+// Render all news by year
+function renderAllNews() {
+  // Group news by year
+  const newsByYear = {};
+  allNewsData.forEach(news => {
+    if (!newsByYear[news.year]) {
+      newsByYear[news.year] = [];
+    }
+    newsByYear[news.year].push(news);
+  });
+
+  // Get sorted years (newest first)
+  const years = Object.keys(newsByYear).sort((a, b) => b - a);
+
+  // Generate HTML
+  allNewsContent.innerHTML = years.map(year => {
+    const yearNews = newsByYear[year];
+    return `
+      <details class="news-year">
+        <summary>
+          <span>${year}</span>
+          <span class="news-count">${yearNews.length}</span>
+          <span class="toggle-icon">+</span>
+        </summary>
+        <ul class="news-list">
+          ${yearNews.map(news => `
+            <li class="news-item">
+              <div class="news-date">${news.date}</div>
+              <div class="news-text">${news.text}</div>
+            </li>
+          `).join('')}
+        </ul>
+      </details>
+    `;
+  }).join('');
+}
+
+// Initial render
+renderRecentNews();
+renderAllNews();
+
 // Start auto-scroll
 startAutoScroll();
 
 // Pause on hover
-newsCarouselTrack.addEventListener('mouseenter', stopAutoScroll);
-newsCarouselTrack.addEventListener('mouseleave', startAutoScroll);
+recentNewsList.addEventListener('mouseenter', stopAutoScroll);
+recentNewsList.addEventListener('mouseleave', startAutoScroll);
 
 // News year toggle icons
 document.querySelectorAll('details.news-year').forEach(function(item) {
@@ -1740,6 +1717,7 @@ document.querySelectorAll('details.news-year').forEach(function(item) {
       icon.textContent = item.open ? '−' : '+';
     }
   });
-});</script>
+});
+</script>
 </body>
 </html>
